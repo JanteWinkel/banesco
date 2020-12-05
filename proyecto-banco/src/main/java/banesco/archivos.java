@@ -8,6 +8,7 @@ import java.util.Stack;
 public class archivos {
 
     int z, x;
+    String b;
 
     Stack pila = new Stack();
     Stack pilados = new Stack();
@@ -41,101 +42,125 @@ public class archivos {
         }
     }
 
+    @SuppressWarnings("empty-statement")
     public void taquilla() {
 
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
 
         int co, opcion;
+        
 
         co = 0;
         z = 0;
+        b = "";
+        
+  
+           System.out.println("----------------------------------------------------------------------");
+           System.out.println("inicia el proceso de taquilla");
+           System.out.println("----------------------------------------------------------------------");
+           System.out.println("");
+           
+           
+           while (!salir && co<5){
 
-        System.out.println("inicia el proceso de taquilla");
+            try {
 
-        while ((pilados.empty() == false)) {
+                System.out.println("----------------------------------------------------------------------");
 
-            if (x < 450) {
+                System.out.println("Elija una opción valida para declarar las solicitudes de los clientes");
 
-                pilaatendidos.push(pilados.pop());
+                System.out.println("");
 
-                while(!salir) {
+                System.out.println("Para realizar un retiro presione 1");
+                System.out.println("Para realizar un depósito presione 2");
+                System.out.println("Para realizar un consulta presione 3");
+                System.out.println("Para realizar una actualizacion de libreta presione 4");
+                System.out.println("Para realizar pagos de servicios presione 5");
+                System.out.println("Para salir presione 0");
 
-                    if (co>4){
-                       System.out.println("llegó al maximo de operaciones por persona");
-                       salir=true;
-                    }else{
-                    try {
+                System.out.println("");
+                System.out.println("-----------------------------------------------------");
+                opcion = sn.nextInt();
 
-                        System.out.println("-----------------------------------------------------");
+                switch (opcion) {
 
-                        System.out.println("Elija una opción valida");
+                    case 1:
 
-                        System.out.println("");
+                        co ++;
+                        b = b +" realizó un retiro, ";
+                        x=x+4;
+                        
 
-                        System.out.println("Para realizar un retiro presione 1");
-                        System.out.println("Para realizar un depósito presione 2");
-                        System.out.println("Para realizar un consulta presione 3");
-                        System.out.println("Para realizar una actualizacion de libreta presione 4");
-                        System.out.println("Para realizar pagos de servicios presione 5");
-                        System.out.println("Para salir presione 0");
+                        break;
 
-                        System.out.println("");
-                        System.out.println("-----------------------------------------------------");
-                        opcion = sn.nextInt();
+                    case 2:
+                        
+                        co ++;
+                        b = b +" realizó un depósito, ";
+                        x=x+3;
 
-                        switch (opcion) {
+                        break;
 
-                            case 1:
-                                System.out.println("");
+                    case 3:
+                        
+                        co ++;
+                        b = b +" realizó una consulta, ";
+                        x=x+1;
 
-                                co = co + 1;
-                                z = z + 150;
-                                x = z;
-                                System.out.println("van " + z + "  " + x + " minutos  " + "   " + co + "   " + pilaatendidos.peek());
-                                break;
+                        break;
 
-                            case 2:
+                    case 4:
+                        
+                        co ++;
+                        b = b +" realizó una actualización de libreta, ";
+                        x=x+5;
 
-                                break;
+                        break;
 
-                            case 3:
+                    case 5:
+                        
+                        co ++;
+                        b = b +" realizó un pago de servicios";
+                        x=x+2;
 
-                                break;
+                        break;
 
-                            case 4:
+                    case 0:
 
-                                break;
+                        salir = true;
+                        System.out.println("salio del sistema");
 
-                            case 5:
+                        break;
 
-                                break;
-
-                            case 0:
-
-                                salir = true;
-                                System.out.println("salio del sistema");
-
-                                break;
-
-                            default:
-                                System.out.println("las opciones van de 0 a 5");
-
-                        }
-
-                    } catch (InputMismatchException e) {
-                        System.out.println("-----------------------------------------------------");
-                        System.out.println("Debe colocar un numero entero entre las opciones dadas");
-                        System.out.println("-----------------------------------------------------");
-                        sn.next();
-                    }break;
+                    default:
+                        System.out.println("las opciones van de 0 a 5");
 
                 }
 
+            } catch (InputMismatchException e) {
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Debe colocar un numero entero entre las opciones dadas");
+                System.out.println("-----------------------------------------------------");
+                sn.next();
             }
-            }
+
         }
-         System.out.println(pilaatendidos);
+        while (pilados.empty()==false){
+         pilaatendidos.push(pilados.pop()+b);}
+    }
+    
+    
+    
+
+    public void imprimirpilas() {
+
+        System.out.println(pila);
+        System.out.println(pilados);
+        System.out.println(pilaatendidos+"\\n");
+        System.out.println(b);
 
     }
-}
+    }
+
+        

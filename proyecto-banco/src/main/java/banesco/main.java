@@ -16,7 +16,8 @@ public static void main (String[] args) {
   archivos a = new archivos();
  a.leertexto("C:\\Users\\Dell\\Desktop\\JAN\\Trimestre V\\Estructura de Datos\\proyecto-banco\\clientes.txt");
     
- a.taquilla();
+a.taquilla();
+a.imprimirpilas();
   
 }
   
